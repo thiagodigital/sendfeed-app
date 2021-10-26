@@ -8,6 +8,7 @@ use Ramsey\Uuid\Uuid;
 
 class Subscriber extends Model
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasFactory;
 
     protected $keyType =  'string';
