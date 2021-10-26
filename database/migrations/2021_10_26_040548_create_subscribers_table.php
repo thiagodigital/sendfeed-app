@@ -17,7 +17,7 @@ class CreateSubscribersTable extends Migration
             $table->uuid('id');
             $table->string('name');
             $table->string('phone');
-            $table->boolean('status')->default(1);
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }
