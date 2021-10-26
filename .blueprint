@@ -1,0 +1,7 @@
+created:
+    - database/factories/SubscriberFactory.php
+    - database/migrations/2021_10_26_040548_create_subscribers_table.php
+    - app/Models/Subscriber.php
+models:
+    User: { id: 'string:36', name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string:100 nullable' }
+    Subscriber: { id: uuid, name: text, phone: text, status: 'boolean default:1' }

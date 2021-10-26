@@ -1,0 +1,9 @@
+models:
+  Subscriber:
+    id: uuid
+    name: text
+    phone: text
+    status: boolean default:1
+
+# controllers:
+  # ...
