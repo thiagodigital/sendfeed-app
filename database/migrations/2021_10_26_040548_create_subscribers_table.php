@@ -15,8 +15,8 @@ class CreateSubscribersTable extends Migration
     {
         Schema::create('subscribers', function (Blueprint $table) {
             $table->uuid('id');
-            $table->text('name');
-            $table->text('phone');
+            $table->string('name');
+            $table->string('phone');
             $table->boolean('status')->default(1);
             $table->timestamps();
         });
