@@ -17,10 +17,11 @@ class CreateFeedsTable extends Migration
             $table->uuid('id');
             $table->string('title');
             $table->text('description');
+            $table->string('image');
             $table->dateTime('pub_date');
             $table->string('uri');
-            $table->string('url');
-            $table->string('status')->default('1');
+            $table->string('url')->nullable();
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }
