@@ -4,6 +4,14 @@ models:
     name: string
     phone: string
     status: boolean default:true
+  Feed:
+    id: uuid
+    title: string
+    description: text
+    pub_date: datetime
+    uri: string
+    url: string
+    status: number default:1
 
 # controllers:
   # ...

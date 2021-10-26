@@ -1,7 +1,11 @@
 created:
     - database/factories/SubscriberFactory.php
-    - database/migrations/2021_10_26_040548_create_subscribers_table.php
+    - database/factories/FeedFactory.php
+    - database/migrations/2021_10_26_042552_create_subscribers_table.php
+    - database/migrations/2021_10_26_042553_create_feeds_table.php
     - app/Models/Subscriber.php
+    - app/Models/Feed.php
 models:
     User: { id: 'string:36', name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string:100 nullable' }
-    Subscriber: { id: uuid, name: text, phone: text, status: 'boolean default:1' }
+    Subscriber: { id: uuid, name: string, phone: string, status: 'boolean default:true' }
+    Feed: { id: uuid, title: string, description: text, pub_date: datetime, uri: string, url: string, status: 'number default:1' }
