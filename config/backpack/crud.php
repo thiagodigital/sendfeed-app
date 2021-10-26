@@ -143,6 +143,8 @@ return [
             // Define the size/looks of the content div for all CRUDs
             // To override per Controller use $this->crud->setShowContentClass('class-string')
             'contentClass' => 'col-md-8',
+
+            'tabsType' => 'horizontal', //options: horizontal, vertical
         ],
 
         /*
@@ -465,7 +467,7 @@ return [
         // "fa" => "Persian",
         // "pl_PL" => "Polish (Poland)",
         // "pl" => "Polish",
-        // "pt_BR" => "Portuguese (Brazil)",
+        "pt_BR" => "Portuguese (Brazil)",
         // "pt_GW" => "Portuguese (Guinea-Bissau)",
         // "pt_MZ" => "Portuguese (Mozambique)",
         // "pt_PT" => "Portuguese (Portugal)",
