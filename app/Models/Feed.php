@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Mail\sendMailFeed;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
@@ -69,5 +70,17 @@ class Feed extends Model
         };
 
         return [];
+    }
+
+    public function sendFeed(Feed $feed = null)
+    {
+        if(!is_null($feed)) {
+            event(new sendMailFeed($feed));
+        }
+    }
+
+    public function audiences()
+    {
+        return $this->belongToMany(Audience::class);
     }
 }

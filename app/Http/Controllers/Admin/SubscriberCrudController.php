@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\SubscriberRequest;
+use App\Models\Subscriber;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Http\Request;
 
 /**
  * Class SubscriberCrudController
@@ -31,6 +33,14 @@ class SubscriberCrudController extends CrudController
         CRUD::setEntityNameStrings('subscriber', 'subscribers');
     }
 
+    public function show(Request $request)
+    {
+        $data = Subscriber::countAudiences($request->id);
+        $crud = $this->crud;
+        return view('subscriber.show', compact('data', 'crud'));
+
+    }
+
     /**
      * Define what happens when the List operation is loaded.
      *
@@ -51,6 +61,12 @@ class SubscriberCrudController extends CrudController
             ],
             'inline' => true,
             'default' => 1
+        ]);
+        CRUD::addColumn([
+            'name'  =>  'feeds',
+            'label' =>  'Audience',
+            'type'  =>  'relationship_count',
+            'suffix' => ' views'
         ]);
 
         /**
@@ -101,4 +117,5 @@ class SubscriberCrudController extends CrudController
     {
         $this->setupCreateOperation();
     }
+
 }

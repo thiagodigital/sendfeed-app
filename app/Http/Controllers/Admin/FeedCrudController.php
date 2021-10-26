@@ -88,17 +88,12 @@ class FeedCrudController extends CrudController
             'label' =>  'Descrição',
             'type'  =>  'text'
         ]);
-        // CRUD::addColumn([
-        //     'name'  =>  'status',
-        //     'label' =>  'Status',
-        //     'type'  =>  'radio',
-        //     'options' => [
-        //         1 => 'Ativo',
-        //         0 => 'Inativo'
-        //     ],
-        //     'inline' => true,
-        //     'default' => 1
-        // ]);
+        CRUD::addColumn([
+            'name'    => 'status',
+            'label'   => 'Status',
+            'type'    => 'select_from_array',
+            'options' => [1 => 'Não enviado', 2 => 'Enviado', 3 => 'Arquivado'],
+        ]);
 
     }
 }
