@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Models\Feed;
+use App\Models\Subscriber;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -13,6 +14,7 @@ class sendMailFeed extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $subscriber;
     public $feed;
 
     /**
@@ -20,8 +22,9 @@ class sendMailFeed extends Mailable
      *
      * @return void
      */
-    public function __construct(Feed $feed)
+    public function __construct(Subscriber $subscriber, Feed $feed)
     {
+        $this->subscriber = $subscriber;
         $this->feed = $feed;
     }
 
@@ -32,8 +35,13 @@ class sendMailFeed extends Mailable
      */
     public function build()
     {
-        return $this->from('email@site.com')
-                    ->subject($this->feed->title)
-                    ->view('email-feed', ['feed' => $this->feed]);
+        $this->feed->status = 2;
+        $this->feed->save();
+
+        $this->feed->url = env('APP_URL').'/'.$this->subscriber->id.'/'.$this->feed->id;
+
+        $this->from($this->subscriber->phone.'@site.test')
+            ->subject($this->feed->title)
+            ->view('email-feed', ['feed' => $this->feed, 'subscriber' => $this->subscriber]);
     }
 }

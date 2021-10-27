@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\SendEmailFeed;
+use App\Events\SendFeedEvent;
 use App\Http\Requests\SubscriberRequest;
+use App\Models\Feed;
 use App\Models\Subscriber;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Class SubscriberCrudController
@@ -116,6 +120,15 @@ class SubscriberCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    public function store(Request $request)
+    {
+        $subscriber = Subscriber::create($request->all());
+
+        event(new SendEmailFeed($subscriber));
+
+        return redirect('/admin/subscriber')->withSuccess('Você esta inscrito na lista de recebimento!');
     }
 
 }

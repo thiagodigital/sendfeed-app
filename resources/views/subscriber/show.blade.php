@@ -62,34 +62,6 @@
                         <td>{{ $data['subscriber']->status == 1 ? 'Ativo' : 'Inativo' }}</td>
 		            </tr>
 
-
-		        {{-- @foreach ($crud->columns() as $column)
-		            <tr>
-		                <td>
-		                    <strong>{!! $column['label'] !!}:</strong>
-		                </td>
-                        <td>
-                            <pre>
-                                {{ dd($column, $data['subscriber']) }}
-                            </pre>
-							@if (!isset($column['type']))
-		                      @include('crud::columns.text')
-		                    @else
-		                      @if(view()->exists('vendor.backpack.crud.columns.'.$column['type']))
-		                        @include('vendor.backpack.crud.columns.'.$column['type'])
-		                      @else
-		                        @if(view()->exists('crud::columns.'.$column['type']))
-		                          @include('crud::columns.'.$column['type'])
-		                        @else
-		                          @include('crud::columns.text')
-		                        @endif
-		                      @endif
-		                    @endif
-                        </td>
-		            </tr>
-		        @endforeach --}}
-
-
             </tbody>
         </table>
         @if ($data['feed_count'] > 0)

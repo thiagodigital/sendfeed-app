@@ -14,6 +14,8 @@ class Subscriber extends Model
     use HasFactory;
 
     protected $keyType =  'string';
+    protected $primaryKey = 'id';
+    public $incrementing = false;
 
     public static function booted()
     {

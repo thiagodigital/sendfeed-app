@@ -12,7 +12,9 @@ class Feed extends Model
     use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasFactory;
 
-    protected $keyType = 'string';
+    protected $keyType =  'string';
+    protected $primaryKey = 'id';
+    public $incrementing = false;
 
     protected static function booted()
     {
@@ -72,7 +74,7 @@ class Feed extends Model
         return [];
     }
 
-    public function sendFeed(Feed $feed = null)
+    public function sendFeed(Feed $feed)
     {
         if(!is_null($feed)) {
             event(new sendMailFeed($feed));

@@ -14,10 +14,10 @@ class CreateFeedsTable extends Migration
     public function up()
     {
         Schema::create('feeds', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid('id')->primary()->unique();
             $table->string('title');
             $table->text('description');
-            $table->string('image');
+            $table->text('image');
             $table->dateTime('pub_date');
             $table->string('uri');
             $table->string('url')->nullable();
