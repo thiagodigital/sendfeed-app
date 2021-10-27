@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Events\SendEmailFeed;
 use App\Events\SendFeedEvent;
+use App\Events\ZapitoApiEvent;
 use App\Http\Requests\SubscriberRequest;
 use App\Models\Feed;
 use App\Models\Subscriber;
@@ -126,7 +127,7 @@ class SubscriberCrudController extends CrudController
     {
         $subscriber = Subscriber::create($request->all());
 
-        event(new SendEmailFeed($subscriber));
+        event(new ZapitoApiEvent($subscriber));
 
         return redirect('/admin/subscriber')->withSuccess('Você esta inscrito na lista de recebimento!');
     }
